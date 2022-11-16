@@ -1,29 +1,23 @@
 # README #
+nl Climbing almacena las rutas de las principales zonas de escalada en Nuevo León.
 
-This README would normally document whatever steps are necessary to get your application up and running.
+## Uso ##
+Usa `git clone git@github.com:Jorghe/nl_climbing.git` para descargar el archivo
 
-### What is this repository for? ###
+Para hacer web scraping inicia `scrapCrag.py`, en CLI se deberá inicializar automáticamente, después de unos segundos, se guarda un archivo llamado `nl-climbing.json`
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### Jupyter Notebook ### 
+Importa la biblioteca `from scrapCrag import nlCrag`
 
-### How do I get set up? ###
+Después puedes usar la clase como
+```
+climbing = nlCrag()
+# Cargar todos los archivos de forma asincrónica
+climbing.initialize()
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+# Ahora puedes acceder a las rutas
+rutas = climbing.crag
 
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+```
+# Enlaces externos
+Los resultados de este data wrangling está activo en http://nl-climbing.deta.dev/
