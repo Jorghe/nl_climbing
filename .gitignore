@@ -47,6 +47,7 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
+*.json
 /bitbucket-pipelines.yml
 /epc.json
 /huaste.json
