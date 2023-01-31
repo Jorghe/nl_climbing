@@ -19,7 +19,7 @@ class nlCrag(object):
 
     def __init__(self, url = _filename):
         self.url = url
-        self.nombre = 'huaste'
+        self.nombre = 'huaste_1'
     
     def describe(self):
         print(self.crag.size)
@@ -40,8 +40,8 @@ class nlCrag(object):
         self.save_file(format="json")
         
         qEnd = time.time()
-        qTime = (qEnd-qStart)*(10**3)
-        print(f"Tiempo de ejecución: {qTime} segundos")
+        qTime = (qEnd-qStart)*(10**2)
+        print(f"Tiempo de ejecución: {qEnd - qStart} segundos ")
 
         return True if self.crag.size > 0 else False
     
@@ -59,9 +59,16 @@ class nlCrag(object):
             _grado = self.crag['Grade']
             self.projects = self.crag[_grado == '?'] # .reset_index(inplace=True, drop = True)
             self.boulders = self.crag[_grado.isin(VERMIN)]
-
             self.crag = self.crag[~_grado.isin(self.projects['Grade'])] 
-
+            
+            # Split column into Area that has the name and Zona that has the hierarchy
+            split = self.crag["Area"].str.split(" ", n=1, expand= True)
+            self.crag["Zona"] = split[0]
+            self.crag["Area"] = split[1]
+            # Separate area and string level
+            # self.crag["Level"]= self.crag["Area"].str.extract(r'((?:[\d\.]+))')
+            # self.crag["Zona"] = self.crag["Area"].str.extract(r"[a-zA-Z ÑñáéíóúÁÉÍÓÚ]+$")
+            # self.crag["Area"]= self.crag["Area"].str.extract(r'((?:[\wÑñáéíóúÁÉÍÓÚ ]+))')
         except IndexError:
             print('Index error')
             return False
